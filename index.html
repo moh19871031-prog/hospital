@@ -25,18 +25,18 @@
             --text-muted: #475569;
             
             /* الزجاج والتأثيرات */
-            --glass-bg: rgba(255, 255, 255, 0.92);
-            --glass-border: rgba(255, 255, 255, 0.6);
-            --glass-shadow: rgba(30, 58, 138, 0.12);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-shadow: rgba(30, 58, 138, 0.08);
             
-            /* الخطوط الديناميكية المريحة (لواجهة اللعبة) */
+            /* خطوط مرنة ومعتدلة (بدون مبالغة في الحجم) */
             --font-title: 'Cairo', sans-serif;
             --font-body: 'Tajawal', sans-serif;
-            --text-sm: clamp(0.875rem, 1vw + 0.5rem, 1rem);
-            --text-base: clamp(1rem, 1.2vw + 0.5rem, 1.125rem);
-            --text-lg: clamp(1.125rem, 1.5vw + 0.5rem, 1.25rem);
-            --text-xl: clamp(1.25rem, 2vw + 0.5rem, 1.5rem);
-            --text-2xl: clamp(1.75rem, 3vw + 0.5rem, 2.5rem);
+            --text-sm: clamp(0.75rem, 1vw + 0.1rem, 0.875rem);
+            --text-base: clamp(0.875rem, 1.2vw + 0.1rem, 1rem);
+            --text-lg: clamp(1rem, 1.5vw + 0.1rem, 1.125rem);
+            --text-xl: clamp(1.125rem, 2vw + 0.1rem, 1.25rem);
+            --text-2xl: clamp(1.25rem, 2.5vw + 0.1rem, 1.5rem);
             
             --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
@@ -59,62 +59,62 @@
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
             color: var(--text-dark); 
             font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.4; }
-        p { line-height: 1.7; }
+        p { line-height: 1.6; }
         
         *:focus-visible { 
-            outline: 3px solid var(--warning-orange); 
-            outline-offset: 3px; 
+            outline: 2px solid var(--warning-orange); 
+            outline-offset: 2px; 
             border-radius: 8px; 
         }
 
         /* المكونات المشتركة */
         .glass-panel {
             background: var(--glass-bg);
-            backdrop-filter: blur(16px); 
-            -webkit-backdrop-filter: blur(16px);
-            border: 2px solid var(--glass-border);
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px var(--glass-shadow);
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px; 
+            box-shadow: 0 8px 24px var(--glass-shadow);
         }
 
         .btn {
             background: linear-gradient(135deg, var(--medical-blue), #2563eb);
             color: var(--white); 
             border: none; 
-            padding: clamp(12px, 2.5vh, 18px) clamp(24px, 4vw, 36px);
-            font-size: var(--text-lg); 
+            padding: 0.75rem 1.5rem;
+            font-size: var(--text-base); 
             font-weight: 700; 
             border-radius: 50px;
             cursor: pointer; 
-            box-shadow: 0 6px 15px rgba(30, 58, 138, 0.2);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
             transition: var(--transition-smooth);
             display: inline-flex; 
             align-items: center; 
             justify-content: center; 
-            gap: 10px;
+            gap: 8px;
             font-family: var(--font-title); 
-            position: relative; 
-            overflow: hidden;
             text-decoration: none; 
             width: fit-content; 
             max-width: 100%;
-            min-height: 48px;
+            min-height: 44px;
         }
 
         .btn:hover, .btn:focus-visible { 
-            transform: translateY(-3px) scale(1.02); 
-            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3); 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 16px rgba(30, 58, 138, 0.25); 
         }
-        .btn:active { transform: translateY(1px); }
+        .btn:active { transform: translateY(0); }
         .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
         
         .btn-purple { background: linear-gradient(135deg, var(--mawhiba-purple), #9333ea); }
         .btn-green { background: linear-gradient(135deg, var(--success-green), #10b981); }
         .btn-outline { 
-            background: rgba(255, 255, 255, 0.8); 
+            background: rgba(255, 255, 255, 0.9); 
             color: var(--medical-blue); 
             border: 2px solid var(--medical-blue); 
             box-shadow: none; 
@@ -125,10 +125,10 @@
             background: rgba(255, 255, 255, 0.95); 
             border: 2px solid var(--medical-blue);
             border-radius: 50px; 
-            padding: 16px 25px; 
-            font-size: var(--text-lg);
+            padding: 0.75rem 1.25rem; 
+            font-size: var(--text-base);
             width: 100%; 
-            max-width: 400px; 
+            max-width: 320px; 
             text-align: center; 
             color: var(--medical-blue);
             font-weight: 700; 
@@ -137,101 +137,91 @@
             font-family: var(--font-body);
         }
         .glass-input:focus { 
-            box-shadow: 0 0 15px rgba(8, 145, 178, 0.3); 
+            box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.2); 
             border-color: var(--medical-cyan); 
         }
 
-        /* هيكل اللعبة */
-        #game-container{
-    width:100%;
-    min-height:100vh;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-}
+        /* هيكل اللعبة الأساسي */
+        #game-container { 
+            width: 100%; 
+            height: 100dvh; 
+            position: relative; 
+            overflow: hidden; 
+        }
         
         .scene {
             position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
+            top: 0; left: 0; right: 0; bottom: 0;
             display: flex; 
             flex-direction: column; 
-            align-items: center;
             opacity: 0; 
             pointer-events: none; 
-            transition: opacity 0.5s ease;
+            transition: opacity 0.4s ease;
             z-index: 10; 
             overflow-y: auto; 
-            overflow-x: hidden; 
-            padding: 12px;
-            padding-top: max(70px, 8vh); 
-            padding-bottom:30px;
+            overflow-x: hidden;
+            /* توفير مساحة للهيدر والمساعد بدون تكبير مفرط */
+            padding: 70px 1rem 80px 1rem;
         }
         .scene.active { opacity: 1; pointer-events: all; }
         
         .scene-content { 
             width: 100%; 
-            max-width: 1100px; 
-            margin: 0 auto; 
+            max-width: 800px; 
+            margin: auto; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            flex: 1; 
             justify-content: center; 
+            gap: 1.5rem;
+            min-height: min-content;
         }
 
         /* واجهة المستخدم (HUD) */
         #hud {
             position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            padding: 12px 20px;
+            top: 0; left: 0; right: 0;
+            padding: 8px 15px;
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             flex-wrap: wrap; 
-            gap: 10px;
+            gap: 8px;
             z-index: 100; 
             background: rgba(255, 255, 255, 0.95); 
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             transform: translateY(-100%); 
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); 
-            pointer-events: none;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); 
         }
-        #hud.active { transform: translateY(0); pointer-events: all; }
+        #hud.active { transform: translateY(0); }
 
         .hud-group { 
             display: flex; 
             align-items: center; 
-            gap: clamp(10px, 2vw, 15px); 
+            gap: 10px; 
             flex-wrap: wrap; 
             justify-content: center; 
         }
         
-        .health-wrapper { display: flex; align-items: center; gap: 8px; }
+        .health-wrapper { display: flex; align-items: center; gap: 6px; }
         .heart-icon { 
-            width: clamp(32px, 4vw, 42px); 
-            height: clamp(32px, 4vw, 42px); 
+            width: 28px; 
+            height: 28px; 
             fill: var(--danger-red); 
-            transition: var(--transition-smooth); 
         }
-        .heart-beat { animation: heartbeat 1s infinite; }
+        .heart-beat { animation: heartbeat 1.2s infinite; }
         @keyframes heartbeat { 
             0%, 40%, 80% { transform: scale(1); } 
             20%, 60% { transform: scale(1.15); } 
         }
         
         .health-track { 
-            width: clamp(120px, 20vw, 220px); 
-            height: 28px; 
+            width: clamp(100px, 15vw, 150px); 
+            height: 20px; 
             background: #e2e8f0; 
-            border-radius: 15px; 
+            border-radius: 10px; 
             border: 2px solid var(--white); 
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); 
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); 
             position: relative; 
             overflow: hidden; 
         }
@@ -239,336 +229,284 @@
             height: 100%; 
             width: 100%; 
             background: var(--success-green); 
-            border-radius: 15px; 
+            border-radius: 10px; 
             transition: width 0.5s ease-out, background-color 0.5s ease; 
         }
         .health-text { 
             position: absolute; 
-            top: 50%; 
-            left: 50%; 
+            top: 50%; left: 50%; 
             transform: translate(-50%, -50%); 
             font-weight: 900; 
             color: var(--text-dark); 
-            font-size: var(--text-sm); 
-            text-shadow: 0 0 3px white; 
+            font-size: 0.75rem; 
+            text-shadow: 0 0 2px white; 
             font-family: var(--font-title); 
         }
 
         .stat-badge {
             background: var(--white); 
-            padding: 6px 14px; 
+            padding: 4px 10px; 
             border-radius: 20px;
             font-weight: 700; 
             color: var(--medical-blue); 
             font-size: var(--text-sm);
-            border: 2px solid var(--medical-light); 
+            border: 1px solid var(--medical-light); 
             display: flex; 
             align-items: center; 
-            gap: 6px;
+            gap: 4px;
         }
-        .stat-badge svg { width: 18px; height: 18px; fill: currentColor; }
+        .stat-badge svg { width: 16px; height: 16px; fill: currentColor; }
         
         #damage-flash { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(220, 38, 38, 0.4); z-index: 999; 
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+            background: rgba(220, 38, 38, 0.3); z-index: 999; 
             pointer-events: none; opacity: 0; transition: opacity 0.2s ease-out; 
         }
 
         /* المساعد الآلي */
         #assistant-container {
             position: fixed; 
-            bottom: 25px; 
-            right: 25px; 
+            bottom: 20px; 
+            right: 20px; 
             z-index: 100;
             display: flex; 
             align-items: flex-end; 
-            gap: 15px;
+            gap: 12px;
             transform: translateY(150%); 
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             pointer-events: none; 
-            max-width: 90vw;
+            max-width: calc(100vw - 40px);
         }
         #assistant-container.active { transform: translateY(0); pointer-events: all; }
         
         .assistant-avatar { 
-            width: 75px; height: 75px; 
+            width: 55px; height: 55px; 
             background: var(--medical-cyan); 
             border-radius: 50%; 
-            border: 3px solid white; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+            border: 2px solid white; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
             display: flex; justify-content: center; align-items: center; 
             flex-shrink: 0; 
             animation: floatAvatar 3s ease-in-out infinite; 
         }
-        .assistant-avatar svg { width: 45px; height: 45px; fill: white; }
-        @keyframes floatAvatar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .assistant-avatar svg { width: 32px; height: 32px; fill: white; }
+        @keyframes floatAvatar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         
         .assistant-bubble {
             background: white; 
-            padding: 16px 22px; 
-            border-radius: 20px 20px 0 20px;
+            padding: 12px 18px; 
+            border-radius: 16px 16px 0 16px;
             border: 2px solid var(--medical-cyan); 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            font-size: var(--text-base); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            font-size: var(--text-sm); 
             font-weight: 700; 
             color: var(--medical-blue);
             position: relative; 
-            max-width: 400px;
-            line-height: 1.5;
+            max-width: 320px;
         }
         .assistant-bubble::after { 
-            content: ''; position: absolute; bottom: -2px; right: -12px; 
-            border-width: 12px 0 0 12px; border-style: solid; 
+            content: ''; position: absolute; bottom: -2px; right: -8px; 
+            border-width: 10px 0 0 10px; border-style: solid; 
             border-color: var(--medical-cyan) transparent transparent transparent; 
         }
 
         /* الشاشات والعناصر الداخلية */
-        .logo-box { text-align: center; margin-bottom: 30px; }
+        .logo-box { text-align: center; }
         .main-title { 
             font-size: var(--text-2xl); 
             background: linear-gradient(to left, var(--medical-blue), var(--medical-cyan)); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            margin-bottom: 10px; 
         }
         .sub-title { font-size: var(--text-xl); color: var(--mawhiba-purple); font-weight: 700; }
+        
         .login-card { 
-            padding: clamp(25px, 5vw, 45px); 
+            padding: clamp(20px, 4vw, 35px); 
             display: flex; flex-direction: column; align-items: center; 
-            gap: 25px; width: 100%; max-width: 550px; 
+            gap: 20px; width: 100%; max-width: 450px; 
         }
         .footer-credits { 
-            text-align: center; font-size: 1.1rem; color: var(--medical-blue); 
-            font-weight: 900; margin-top: 25px; 
+            text-align: center; font-size: var(--text-sm); color: var(--medical-blue); 
+            font-weight: 900; opacity: 0.8;
         }
 
         .vitals-monitor {
-            width: 100%; background: #0f172a; border-radius: 15px; padding: 25px;
-            box-shadow: inset 0 0 0 4px #1e293b; color: #10b981; font-family: monospace;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;
-            margin-bottom: 30px;
+            width: 100%; background: #0f172a; border-radius: 12px; padding: 20px;
+            box-shadow: inset 0 0 0 3px #1e293b; color: #10b981; font-family: monospace;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px;
         }
         .vital-box { 
-            background: rgba(255,255,255,0.05); padding: 15px; 
-            border-radius: 10px; text-align: center; 
-            border: 1px solid rgba(16,185,129,0.3); 
+            background: rgba(255,255,255,0.05); padding: 12px; 
+            border-radius: 8px; text-align: center; 
+            border: 1px solid rgba(16,185,129,0.2); 
         }
-        .vital-label { font-size: var(--text-sm); color: #94a3b8; margin-bottom: 8px; font-family: var(--font-body); font-weight: 700; }
+        .vital-label { font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px; font-family: var(--font-body); font-weight: 700; }
         .vital-value { font-size: var(--text-xl); font-weight: 900; }
         .vital-danger { color: #ef4444; animation: blink 1s infinite; }
         .vital-warning { color: #f59e0b; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         
-        .dialogue-box { width: 100%; padding: 30px; text-align: center; }
-        .dialogue-text { font-size: var(--text-lg); font-weight: 700; margin-bottom: 25px; }
+        .dialogue-box { width: 100%; padding: 20px; text-align: center; }
+        .dialogue-text { font-size: var(--text-base); font-weight: 700; margin-bottom: 15px; }
 
-        .section-title { font-size: var(--text-2xl); color: var(--medical-blue); margin-bottom: 20px; text-align: center; font-weight: 900; }
-        .doors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; width: 100%; }
+        .section-title { font-size: var(--text-xl); color: var(--medical-blue); text-align: center; font-weight: 900; }
+        
+        .doors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; width: 100%; }
         .lab-door {
-            background: var(--white); border-radius: 18px; padding: 30px 20px; text-align: center;
-            cursor: pointer; border: 3px solid transparent; box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            background: var(--white); border-radius: 14px; padding: 20px 15px; text-align: center;
+            cursor: pointer; border: 2px solid transparent; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             transition: var(--transition-smooth); display: flex; flex-direction: column; align-items: center;
-            position: relative; overflow: hidden; min-height: 200px; justify-content: center;
+            position: relative; overflow: hidden; justify-content: center; min-height: 140px;
         }
-        .lab-door::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, var(--medical-blue), var(--medical-cyan)); }
-        .lab-door:hover, .lab-door:focus-visible { transform: translateY(-6px); border-color: var(--medical-cyan); box-shadow: 0 12px 30px rgba(8,145,178,0.2); }
+        .lab-door::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--medical-blue), var(--medical-cyan)); }
+        .lab-door:hover, .lab-door:focus-visible { transform: translateY(-4px); border-color: var(--medical-cyan); box-shadow: 0 8px 20px rgba(8,145,178,0.15); }
         .lab-door.locked { filter: grayscale(1); opacity: 0.6; pointer-events: none; }
         .lab-door.completed { border-color: var(--success-green); background: #f0fdf4; }
         .lab-door.completed::before { background: var(--success-green); }
-        .door-icon { width: 75px; height: 75px; margin-bottom: 18px; }
-        .door-title { font-size: var(--text-lg); font-weight: 900; margin-bottom: 12px; font-family: var(--font-title); }
-        .door-status { font-size: var(--text-sm); font-weight: 700; background: var(--medical-light); padding: 6px 18px; border-radius: 20px; color: var(--medical-blue); }
+        .door-icon { width: 45px; height: 45px; margin-bottom: 12px; }
+        .door-title { font-size: var(--text-base); font-weight: 900; margin-bottom: 8px; font-family: var(--font-title); }
+        .door-status { font-size: 0.75rem; font-weight: 700; background: var(--medical-light); padding: 4px 12px; border-radius: 20px; color: var(--medical-blue); }
 
-        .lab-container { width: 100%; padding: clamp(20px, 4vw, 40px); display: flex; flex-direction: column; gap: 25px; }
-        .lab-header { display: flex; align-items: center; gap: 15px; border-bottom: 2px dashed var(--glass-border); padding-bottom: 20px; }
-        .lab-header svg { width: 45px; height: 45px; flex-shrink: 0; }
-        .lab-workspace { background: rgba(255,255,255,0.7); border-radius: 16px; padding: 25px; display: flex; flex-direction: column; align-items: center; gap: 25px; }
+        .lab-container { width: 100%; padding: clamp(15px, 3vw, 25px); display: flex; flex-direction: column; gap: 15px; }
+        .lab-header { display: flex; align-items: center; gap: 10px; border-bottom: 1px dashed var(--glass-border); padding-bottom: 12px; }
+        .lab-header svg { width: 35px; height: 35px; flex-shrink: 0; }
+        .lab-workspace { background: rgba(255,255,255,0.6); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
 
-        .table-wrapper { width: 100%; overflow-x: auto; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .medical-table { width: 100%; min-width: 500px; border-collapse: collapse; font-size: var(--text-base); text-align: center; background: white; }
-        .medical-table th { background: var(--medical-blue); color: white; padding: 15px; font-family: var(--font-title); white-space: nowrap; }
-        .medical-table td { padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: 700; transition: background 0.2s; }
+        .table-wrapper { width: 100%; overflow-x: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .medical-table { width: 100%; min-width: 400px; border-collapse: collapse; font-size: var(--text-sm); text-align: center; background: white; }
+        .medical-table th { background: var(--medical-blue); color: white; padding: 10px; font-family: var(--font-title); white-space: nowrap; }
+        .medical-table td { padding: 10px; border-bottom: 1px solid #e2e8f0; font-weight: 700; transition: background 0.2s; }
         .medical-table tr { cursor: pointer; }
         .medical-table tr:hover td { background: #f1f5f9; }
         .medical-table tr.selected td { background: #dbeafe; border-color: var(--medical-blue); }
-        .options-grid { display: grid; grid-template-columns: 1fr; gap: 15px; width: 100%; }
+        .options-grid { display: grid; grid-template-columns: 1fr; gap: 10px; width: 100%; }
         
-        .xray-container { position: relative; width: 100%; max-width: 400px; aspect-ratio: 1; background: #1e293b; border-radius: 20px; overflow: hidden; border: 5px solid #334155; }
+        .xray-container { position: relative; width: 100%; max-width: 300px; aspect-ratio: 1; background: #1e293b; border-radius: 16px; overflow: hidden; border: 4px solid #334155; }
         .xray-img { width: 100%; height: 100%; filter: contrast(1.15) grayscale(1); }
         .xray-grid { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
-        .xray-zone { border: 1px dashed rgba(255,255,255,0.2); cursor: pointer; transition: background 0.2s; background: transparent; margin: 0; padding: 0;}
-        .xray-zone:hover, .xray-zone:focus-visible { background: rgba(8,145,178,0.4); outline: none; }
-        .infection-spot { position: absolute; width: 28%; height: 28%; background: radial-gradient(circle, rgba(220,38,38,0.75) 0%, transparent 70%); border-radius: 50%; pointer-events: none; animation: pulseSpot 1.5s infinite alternate; display: none; }
-        @keyframes pulseSpot { from { transform: scale(1); opacity: 0.6; } to { transform: scale(1.3); opacity: 1; } }
+        .xray-zone { border: 1px dashed rgba(255,255,255,0.15); cursor: pointer; transition: background 0.2s; background: transparent; margin: 0; padding: 0; appearance: none;}
+        .xray-zone:hover, .xray-zone:focus-visible { background: rgba(8,145,178,0.3); outline: none; }
+        .infection-spot { position: absolute; width: 28%; height: 28%; background: radial-gradient(circle, rgba(220,38,38,0.7) 0%, transparent 70%); border-radius: 50%; pointer-events: none; animation: pulseSpot 1.5s infinite alternate; display: none; }
+        @keyframes pulseSpot { from { transform: scale(1); opacity: 0.5; } to { transform: scale(1.2); opacity: 1; } }
 
-        .tubes-wrapper { display: flex; justify-content: center; gap: clamp(20px, 5vw, 40px); height: 180px; align-items: flex-end; margin-bottom: 30px; flex-wrap: wrap; }
-        .tube-item { display: flex; flex-direction: column; align-items: center; gap: 12px; cursor: pointer; background: transparent; border: none; padding: 10px; border-radius: 12px; transition: var(--transition-smooth); }
-        .tube-item:hover, .tube-item:focus-visible { background: rgba(255,255,255,0.5); outline: none; }
-        .tube { width: 45px; height: 130px; background: rgba(255,255,255,0.6); border: 3px solid #cbd5e1; border-top: none; border-radius: 0 0 22px 22px; position: relative; overflow: hidden; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .tube-item:hover .tube, .tube-item:focus-visible .tube { transform: translateY(-12px); border-color: var(--medical-blue); }
-        .tube-item.selected .tube { transform: translateY(-12px); border-color: var(--warning-orange); box-shadow: 0 12px 20px rgba(217,119,6,0.35); }
-        .tube::after { content: ''; position: absolute; top: -6px; left: -6px; right: -6px; height: 12px; border: 3px solid #cbd5e1; border-radius: 50%; }
-        .liquid { position: absolute; bottom: 0; left: 0; width: 100%; border-radius: 0 0 18px 18px; transition: height 1s ease-in-out, background 1s; }
-        .tube-label { font-weight: 900; font-size: var(--text-base); font-family: var(--font-title); color: var(--text-dark); }
+        .tubes-wrapper { display: flex; justify-content: center; gap: clamp(15px, 4vw, 30px); height: 140px; align-items: flex-end; flex-wrap: wrap; }
+        .tube-item { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; background: transparent; border: none; padding: 5px; border-radius: 10px; transition: var(--transition-smooth); }
+        .tube-item:hover, .tube-item:focus-visible { background: rgba(255,255,255,0.6); outline: none; }
+        .tube { width: 35px; height: 100px; background: rgba(255,255,255,0.7); border: 2px solid #cbd5e1; border-top: none; border-radius: 0 0 18px 18px; position: relative; overflow: hidden; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .tube-item:hover .tube, .tube-item:focus-visible .tube { transform: translateY(-8px); border-color: var(--medical-blue); }
+        .tube-item.selected .tube { transform: translateY(-8px); border-color: var(--warning-orange); box-shadow: 0 8px 15px rgba(217,119,6,0.25); }
+        .tube::after { content: ''; position: absolute; top: -4px; left: -4px; right: -4px; height: 8px; border: 2px solid #cbd5e1; border-radius: 50%; }
+        .liquid { position: absolute; bottom: 0; left: 0; width: 100%; border-radius: 0 0 16px 16px; transition: height 1s ease-in-out, background 1s; }
+        .tube-label { font-weight: 900; font-size: var(--text-sm); font-family: var(--font-title); color: var(--text-dark); }
 
-        .evidence-board { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; width: 100%; margin-bottom: 30px; }
-        .evidence-card { background: white; padding: 20px; border-radius: 14px; border-right: 5px solid var(--medical-cyan); flex: 1 1 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-        .evidence-card h4 { color: var(--medical-blue); font-size: var(--text-lg); margin-bottom: 8px; }
-        .evidence-card p { font-size: var(--text-base); font-weight: 700; color: var(--text-muted); }
+        .evidence-board { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; width: 100%; }
+        .evidence-card { background: white; padding: 15px; border-radius: 10px; border-right: 4px solid var(--medical-cyan); flex: 1 1 200px; box-shadow: 0 3px 8px rgba(0,0,0,0.05); }
+        .evidence-card h4 { color: var(--medical-blue); font-size: var(--text-base); margin-bottom: 5px; }
+        .evidence-card p { font-size: var(--text-sm); font-weight: 700; color: var(--text-muted); }
         
-        .diag-select { width: 100%; padding: 15px; font-size: var(--text-base); border: 2px solid var(--medical-blue); border-radius: 12px; font-family: var(--font-body); font-weight: 700; color: var(--text-dark); background: white; cursor: pointer; margin-bottom: 20px; transition: var(--transition-smooth); }
-        .diag-select:focus { border-color: var(--warning-orange); outline: none; box-shadow: 0 0 0 4px rgba(217,119,6,0.2); }
+        .diag-select { width: 100%; padding: 10px; font-size: var(--text-sm); border: 2px solid var(--medical-blue); border-radius: 10px; font-family: var(--font-body); font-weight: 700; color: var(--text-dark); background: white; cursor: pointer; transition: var(--transition-smooth); }
+        .diag-select:focus { border-color: var(--warning-orange); outline: none; box-shadow: 0 0 0 3px rgba(217,119,6,0.15); }
 
         /* النوافذ المنبثقة */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.85); z-index: 1000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.8); z-index: 1000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 15px; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
-        .modal-box { background: white; padding: 35px 30px; border-radius: 24px; width: 100%; max-width: 520px; transform: scale(0.9); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); text-align: center; border-top: 10px solid var(--success-green); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .modal-box { background: white; padding: 25px 20px; border-radius: 20px; width: 100%; max-width: 400px; transform: scale(0.9); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); text-align: center; border-top: 8px solid var(--success-green); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
         .modal-overlay.active .modal-box { transform: scale(1); }
         .modal-box.error { border-top-color: var(--danger-red); }
-        .modal-icon { width: 70px; height: 70px; margin: 0 auto 20px; }
-        .modal-title { font-size: var(--text-xl); margin-bottom: 12px; font-weight: 900; }
-        .modal-desc { font-size: var(--text-base); color: var(--text-muted); margin-bottom: 30px; font-weight: 700; line-height: 1.6; }
+        .modal-icon { width: 50px; height: 50px; margin: 0 auto 15px; }
+        .modal-title { font-size: var(--text-lg); margin-bottom: 10px; font-weight: 900; }
+        .modal-desc { font-size: var(--text-sm); color: var(--text-muted); margin-bottom: 20px; font-weight: 700; line-height: 1.5; }
 
         /* =========================================
-           الشهادة الرسمية (حل جذري متجاوب 100% بدون قص)
+           الشهادة الرسمية (حل جذري متجاوب 100% باستخدام CQI)
+           يمنع القص أو ظهور Scroll تماماً ويحافظ على التخطيط
            ========================================= */
-      #scene-end{
-    background:var(--medical-light);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
-    min-height:100vh;
-    overflow:auto;
-    /* كان 20px */
-    padding:35px 20px 20px;
-    box-sizing:border-box;
-}
+        #scene-end {
+            background: var(--medical-light);
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; 
+        }
         
-     .cert-outer-wrapper{
-    width:min(1100px,96vw);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin:0 auto;
-}
+        .scene-end-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 15px;
+            gap: 15px;
+        }
 
-       .certificate{
-    width:100%;
-    aspect-ratio:297/210;
-    background:#fff;
-    border:4px solid var(--medical-blue);
-    border-radius:18px;
-    padding:2.5em;
-    box-sizing:border-box;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    overflow:hidden;
-    box-shadow:0 10px 35px rgba(0,0,0,.18);
-    font-size:clamp(6px,.9vw,11px);
-}
+        .cert-outer-wrapper {
+            width: 100%;
+            max-width: calc(70vh * 1.414); /* لضمان عدم تجاوز الارتفاع للشاشة */
+            aspect-ratio: 1.414; /* أبعاد A4 Landscape */
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .certificate {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border: 0.4cqi solid var(--medical-blue);
+            border-radius: 2cqi;
+            padding: 3cqi 4cqi;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            container-type: inline-size; /* تعريف الحاوية للوحدات cqi */
+            position: relative;
+            overflow: hidden;
+        }
         
-        .cert-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.04; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>') repeat; background-size: 5em; pointer-events: none; z-index: 1; }
+        .cert-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.03; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>') repeat; background-size: 6cqi; pointer-events: none; z-index: 1; }
         
-       .cert-header{
-    flex-shrink:0;
-}
-        .cert-logo svg { width: 7em; height: 7em; fill: var(--medical-blue); }
-        .cert-logo{
-    flex-shrink:0;
-}
-       .cert-title-area{
-    flex:1;
-    text-align:center;
-    min-width:0;
-}
-        .cert-main-title { font-size: 3.2em; color: var(--medical-blue); font-weight: 900; margin-bottom: 0.2em; font-family: var(--font-title); }
-        .cert-sub { font-size: 1.8em; color: var(--mawhiba-purple); font-weight: 900; }
+        .cert-header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; z-index: 2; }
+        .cert-logo svg { width: 7cqi; height: 7cqi; fill: var(--medical-blue); }
         
-        .cert-body{
-
-    flex:1;
-
-    display:flex;
-    flex-direction:column;
-
-    justify-content:center;
-
-}
-        .stars-container { display: flex; justify-content: center; gap: 0.8em; margin-bottom: 1.2em; }
-        .stars-container svg { width: 3.5em; height: 3.5em; fill: #facc15; filter: drop-shadow(0 0.4em 0.8em rgba(250, 204, 21, 0.4)); }
+        .cert-title-area { flex: 1; text-align: center; }
+        .cert-main-title { font-size: 3.5cqi; color: var(--medical-blue); font-weight: 900; margin-bottom: 0.2cqi; font-family: var(--font-title); }
+        .cert-sub { font-size: 1.8cqi; color: var(--mawhiba-purple); font-weight: 900; }
         
-        .cert-text { font-size: 1.6em; color: var(--text-dark); font-weight: 700; line-height: 1.4; }
-       .cert-name{
-    width:100%;
-    text-align:center;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    font-size:clamp(2em,3vw,3.4em);
-}
+        .cert-body { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 2; gap: 0.8cqi;}
         
-        /* تحويل تخطيط التقرير إلى Grid ثابت الأعمدة ليمنع النزول العشوائي للأسطر */
-       .report-grid{
-    display:grid;
-   grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:1em;
-    width:100%;
-    flex-shrink:0;
-}
-        .report-item { background: rgba(239, 246, 255, 0.7); padding: 0.8em; border-radius: 1em; border: 0.15em solid #bfdbfe; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .report-label { font-size: 1.1em; color: var(--text-muted); font-weight: 900; margin-bottom: 0.4em; }
-        .report-val { font-size: 1.4em; color: var(--medical-blue); font-weight: 900; font-family: var(--font-title); line-height: 1.3; }
+        .stars-container { display: flex; justify-content: center; gap: 0.6cqi; }
+        .stars-container svg { width: 3.5cqi; height: 3.5cqi; fill: #facc15; filter: drop-shadow(0 0.2cqi 0.4cqi rgba(250, 204, 21, 0.4)); }
         
-       .cert-footer{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-
-    flex-shrink:0;
-
-    z-index:2;
-}
-        .stamp-wrapper { position: relative; width: 10em; height: 10em; display: flex; justify-content: center; align-items: center; }
+        .cert-text { font-size: 1.6cqi; color: var(--text-dark); font-weight: 700; line-height: 1.4; }
+        .cert-name { font-size: 3.8cqi; color: var(--medical-blue); font-weight: 900; max-width: 90cqi; text-align: center; line-height: 1.2; word-wrap: break-word; }
+        
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1cqi;
+            width: 85cqi;
+            margin-top: 1cqi;
+        }
+        .report-item { background: rgba(239, 246, 255, 0.8); padding: 0.8cqi; border-radius: 1cqi; border: 0.15cqi solid #bfdbfe; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .report-label { font-size: 1.1cqi; color: var(--text-muted); font-weight: 900; margin-bottom: 0.2cqi; }
+        .report-val { font-size: 1.4cqi; color: var(--medical-blue); font-weight: 900; font-family: var(--font-title); line-height: 1.2; }
+        
+        .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; flex-shrink: 0; z-index: 2; }
+        
+        .stamp-wrapper { position: relative; width: 12cqi; height: 12cqi; display: flex; justify-content: center; align-items: center; }
         .stamp-svg { width: 100%; height: 100%; animation: stampRotate 15s linear infinite; opacity: 0.9; }
         @keyframes stampRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
         .signature-box { text-align: center; }
-        .signature-line { width: 16em; border-bottom: 0.2em solid var(--text-dark); margin-bottom: 0.5em; display: flex; justify-content: center; padding-bottom: 0.5em; }
-        .signature-svg { width: 9em; height: 3em; }
-        .signature-title { font-size: 1.3em; font-weight: 900; color: var(--medical-blue); text-align: center; line-height: 1.4; }
+        .signature-line { width: 16cqi; border-bottom: 0.2cqi solid var(--text-dark); margin-bottom: 0.4cqi; display: flex; justify-content: center; padding-bottom: 0.2cqi; }
+        .signature-svg { width: 9cqi; height: 3cqi; }
+        .signature-title { font-size: 1.3cqi; font-weight: 900; color: var(--medical-blue); text-align: center; line-height: 1.4; }
 
         #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 900; }
-@media (max-width:768px){
 
-    :root{
-
-        --text-3xl:1.6rem;
-        --text-2xl:1.4rem;
-        --text-xl:1.2rem;
-        --text-lg:1rem;
-        --text-base:.9rem;
-
-    }
-
-    .scene-content{
-
-        max-width:100%;
-
-        padding:0;
-
-    }
-
-    .btn{
-
-        font-size:.95rem;
-
-        padding:12px 22px;
-
-    }
-
-}
     </style>
 </head>
 <body>
@@ -605,7 +543,7 @@
         <main id="scene-login" class="scene active" role="main">
             <div class="scene-content">
                 <div class="logo-box">
-                    <svg style="width:110px;height:110px;fill:var(--medical-blue);margin-bottom:20px;" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
+                    <svg style="width:80px;height:80px;fill:var(--medical-blue);margin-bottom:15px;" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
                     <h1 class="main-title">مستشفى موهبة التخصصي</h1>
                     <h2 class="sub-title">مهام التشخيص الطبي المتقدم</h2>
                 </div>
@@ -640,7 +578,7 @@
         <section id="scene-corridor" class="scene" aria-label="ممرات المختبرات">
             <div class="scene-content">
                 <h2 class="section-title">المختبرات الطبية</h2>
-                <p style="font-size: var(--text-lg); font-weight: 700; margin-bottom: 35px; text-align: center; color:var(--text-muted); max-width: 800px;">اجمع الأدلة بربط النتائج. القرارات الخاطئة تضعف المريض. اضغط على المختبرات لفتحها.</p>
+                <p style="font-size: var(--text-base); font-weight: 700; text-align: center; color:var(--text-muted);">اجمع الأدلة بربط النتائج. القرارات الخاطئة تضعف المريض. اضغط على المختبرات لفتحها.</p>
                 <div class="doors-grid">
                     <button class="lab-door" id="door-blood" onclick="Labs.open('blood')" aria-label="دخول مختبر الدم">
                         <svg class="door-icon" style="fill:var(--danger-red);" viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></svg>
@@ -655,7 +593,7 @@
                         <div class="door-title">المختبر الكيميائي</div><div class="door-status" id="status-kidney">بانتظار التحليل</div>
                     </button>
                 </div>
-                <button id="btn-diagnosis" class="btn btn-green" style="margin-top:40px; display:none;" onclick="Game.showDiagnosis()">التوجه لمجلس التشخيص النهائي</button>
+                <button id="btn-diagnosis" class="btn btn-green" style="margin-top:20px; display:none; width: 100%;" onclick="Game.showDiagnosis()">التوجه لمجلس التشخيص النهائي</button>
             </div>
         </section>
 
@@ -664,7 +602,7 @@
                 <div class="glass-panel lab-container">
                     <div class="lab-header">
                         <svg style="fill:var(--danger-red);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-                        <h2 style="font-size: var(--text-2xl); color:var(--medical-blue);">تحليل الدم CBC</h2>
+                        <h2 style="font-size: var(--text-xl); color:var(--medical-blue);">تحليل الدم CBC</h2>
                     </div>
                     <div class="lab-workspace">
                         <p style="font-weight:900; color:var(--text-muted); text-align:center;">الخطوة ١: قارن نتائج المريض بالمعدل الطبيعي. اضغط على القيمة غير الطبيعية (الشاذة).</p>
@@ -675,7 +613,7 @@
                             </table>
                         </div>
                         <div id="blood-step2" style="display:none; width:100%;">
-                            <p style="font-weight:900; color:var(--medical-blue); margin: 25px 0 15px; text-align:center; font-size: var(--text-lg);">الخطوة ٢: استنتاج علمي. ماذا يعني هذا الخلل؟</p>
+                            <p style="font-weight:900; color:var(--medical-blue); margin: 15px 0 10px; text-align:center; font-size: var(--text-base);">الخطوة ٢: استنتاج علمي. ماذا يعني هذا الخلل؟</p>
                             <div class="options-grid" id="blood-options"></div>
                         </div>
                     </div>
@@ -688,7 +626,7 @@
                 <div class="glass-panel lab-container">
                     <div class="lab-header">
                         <svg style="fill:var(--medical-cyan);" viewBox="0 0 24 24"><path d="M17.5 4c-1.35 0-2.62.59-3.5 1.56V4h-4v1.56C9.12 4.59 7.85 4 6.5 4 4.01 4 2 6.01 2 8.5c0 3.87 5.09 8.25 10 12.5 4.91-4.25 10-8.63 10-12.5C22 6.01 19.99 4 17.5 4z"/></svg>
-                        <h2 style="font-size: var(--text-2xl); color:var(--medical-blue);">أشعة الصدر X-Ray</h2>
+                        <h2 style="font-size: var(--text-xl); color:var(--medical-blue);">أشعة الصدر X-Ray</h2>
                     </div>
                     <div class="lab-workspace">
                         <p style="font-weight:900; color:var(--text-muted); text-align:center;">هل يوجد تعتيم (سوائل/التهاب) أم أنها نظيفة (سوداء)؟ اضغط على مكان المشكلة إن وجدت.</p>
@@ -701,7 +639,7 @@
                             <div class="xray-grid"></div>
                             <div class="infection-spot" id="lung-infection"></div>
                         </div>
-                        <button class="btn btn-outline" style="width:100%; max-width:400px;" onclick="Labs.checkLung('CLEAN')">الرئتان سليمتان تماماً</button>
+                        <button class="btn btn-outline" style="width:100%; max-width:300px;" onclick="Labs.checkLung('CLEAN')">الرئتان سليمتان تماماً</button>
                     </div>
                 </div>
             </div>
@@ -712,7 +650,7 @@
                 <div class="glass-panel lab-container">
                     <div class="lab-header">
                         <svg style="fill:#d97706;" viewBox="0 0 24 24"><path d="M12 22c5.52 0 10-4.48 10-10 0-4.75-3.31-8.72-7.75-9.74l-.84-.19-.48.74C11.51 4.95 11 6.8 11 8.5c0 4.14 3.36 7.5 7.5 7.5 1.05 0 2.05-.22 2.96-.6.03.2.04.4.04.6 0 5.52-4.48 10-10 10S2 21.52 2 16c0-5.32 4.14-9.69 9.38-9.98L12 6.01V4c-5.52 0-10 4.48-10 10s4.48 10 10 10z"/></svg>
-                        <h2 style="font-size: var(--text-2xl); color:var(--medical-blue);">تحليل البول الكيميائي</h2>
+                        <h2 style="font-size: var(--text-xl); color:var(--medical-blue);">تحليل البول الكيميائي</h2>
                     </div>
                     <div class="lab-workspace">
                         <p style="font-weight:900; color:var(--text-muted); text-align:center;">الخطوة ١: لاحظ المؤشرات. اضغط على الأنبوب ذو المؤشر الشاذ أو الدال على الحالة.</p>
@@ -731,7 +669,7 @@
                             </button>
                         </div>
                         <div id="kidney-step2" style="display:none; width:100%;">
-                            <p style="font-weight:900; color:var(--medical-blue); margin-bottom: 15px; text-align:center; font-size: var(--text-lg);">الخطوة ٢: ما هو التفسير العلمي لهذا التفاعل؟</p>
+                            <p style="font-weight:900; color:var(--medical-blue); margin-bottom: 10px; text-align:center; font-size: var(--text-base);">الخطوة ٢: ما هو التفسير العلمي لهذا التفاعل؟</p>
                             <div class="options-grid" id="kidney-options"></div>
                         </div>
                     </div>
@@ -742,18 +680,18 @@
         <section id="scene-diagnosis" class="scene" aria-label="التشخيص النهائي">
             <div class="scene-content">
                 <h2 class="section-title">التشخيص وإصدار خطة العلاج</h2>
-                <div class="glass-panel" style="width:100%; max-width:1000px; padding:clamp(20px, 4vw, 40px); display:flex; flex-direction:column; align-items:center;">
-                    <h3 style="font-size:var(--text-xl); color:var(--medical-blue); margin-bottom:20px; font-weight: 900;">الأدلة المجمعة في ملف المريض:</h3>
+                <div class="glass-panel" style="width:100%; padding:20px; display:flex; flex-direction:column; align-items:center;">
+                    <h3 style="font-size:var(--text-lg); color:var(--medical-blue); margin-bottom:15px; font-weight: 900;">الأدلة المجمعة في ملف المريض:</h3>
                     <div class="evidence-board" id="evidence-board"></div>
-                    <div style="width:100%; text-align:right;">
-                        <label for="select-disease" style="font-size:var(--text-lg); font-weight:900; color:var(--medical-blue); display:block; margin-bottom:12px;">أولاً: ما هو المرض الرئيسي؟</label>
+                    <div style="width:100%; text-align:right; margin-top: 20px;">
+                        <label for="select-disease" style="font-size:var(--text-base); font-weight:900; color:var(--medical-blue); display:block; margin-bottom:8px;">أولاً: ما هو المرض الرئيسي؟</label>
                         <select id="select-disease" class="diag-select">
                             <option value="">-- اختر بناءً على الأدلة أعلاه --</option>
                             <option value="infection">عدوى بكتيرية حادة (التهاب رئوي)</option>
                             <option value="anemia">فقر دم حاد جدًا (نقص هيموجلوبين)</option>
                             <option value="dehydration">جفاف شديد مع ترسبات كلوية</option>
                         </select>
-                        <label for="select-treatment" style="font-size:var(--text-lg); font-weight:900; color:var(--medical-blue); display:block; margin:25px 0 12px;">ثانياً: ما هو التدخل الطبي المنقذ للحياة؟</label>
+                        <label for="select-treatment" style="font-size:var(--text-base); font-weight:900; color:var(--medical-blue); display:block; margin:20px 0 8px;">ثانياً: ما هو التدخل الطبي المنقذ للحياة؟</label>
                         <select id="select-treatment" class="diag-select">
                             <option value="">-- اختر العلاج المناسب للتشخيص --</option>
                             <option value="antibiotic">مضادات حيوية واسعة الطيف عبر الوريد</option>
@@ -761,62 +699,66 @@
                             <option value="fluids">إرواء وريدي مكثف بالسوائل (مغذي)</option>
                         </select>
                     </div>
-                    <button class="btn btn-green" style="margin-top:30px; width:100%;" onclick="Game.submitDiagnosis()">تأكيد الخطة وإعطاء العلاج فوراً</button>
+                    <button class="btn btn-green" style="margin-top:25px; width:100%;" onclick="Game.submitDiagnosis()">تأكيد الخطة وإعطاء العلاج فوراً</button>
                 </div>
             </div>
         </section>
 
+        <!-- بناء جذري للشهادة يعتمد على CQI لضمان عدم حدوث Scroll واستقرار الأحجام بنسبة 100% -->
         <section id="scene-end" class="scene" aria-label="الشهادة النهائية">
-            <div class="cert-outer-wrapper">
-                <div class="certificate">
-                    <div class="cert-bg"></div>
-                    <div class="cert-header">
-                        <div class="cert-logo"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg></div>
-                        <div class="cert-title-area">
-                            <h1 class="cert-main-title">مستشفى موهبة التخصصي</h1>
-                            <div class="cert-sub">تقرير الأداء وشهادة التميز الطبي</div>
+            <div class="scene-end-content">
+                <div class="cert-outer-wrapper">
+                    <div class="certificate">
+                        <div class="cert-bg"></div>
+                        <div class="cert-header">
+                            <div class="cert-logo"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg></div>
+                            <div class="cert-title-area">
+                                <h1 class="cert-main-title">مستشفى موهبة التخصصي</h1>
+                                <div class="cert-sub">تقرير الأداء وشهادة التميز الطبي</div>
+                            </div>
+                            <div class="cert-logo"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
                         </div>
-                        <div class="cert-logo"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
-                    </div>
-                    <div class="cert-body">
-                        <div class="stars-container" id="cert-stars"></div>
-                        <p class="cert-text">يشهد المجلس الطبي الموقر بأن</p>
-                        <h2 class="cert-name">د. <span id="c-name"></span></h2>
-                        <p class="cert-text" id="c-desc">قد أثبت كفاءته في التعامل مع الحالات الطارئة المبنية على الاستنتاج العلمي.</p>
-                        <div class="report-grid">
-                            <div class="report-item"><span class="report-label">رتبة الطبيب</span><span class="report-val" id="c-rank"></span></div>
-                            <div class="report-item"><span class="report-label">التشخيص</span><span class="report-val" style="color:var(--danger-red);" id="c-disease"></span></div>
-                            <div class="report-item"><span class="report-label">دقة العمل</span><span class="report-val"><span id="c-acc"></span>%</span></div>
-                            <div class="report-item"><span class="report-label">صحة المريض</span><span class="report-val" id="c-health"></span></div>
-                            <div class="report-item"><span class="report-label">نقاط XP</span><span class="report-val" id="c-xp"></span></div>
-                            <div class="report-item"><span class="report-label">وقت الإنقاذ</span><span class="report-val" id="c-time"></span></div>
+                        <div class="cert-body">
+                            <div class="stars-container" id="cert-stars"></div>
+                            <p class="cert-text">يشهد المجلس الطبي الموقر بأن</p>
+                            <h2 class="cert-name">د. <span id="c-name"></span></h2>
+                            <p class="cert-text" id="c-desc">قد أثبت كفاءته في التعامل مع الحالات الطارئة المبنية على الاستنتاج العلمي.</p>
+                            <div class="report-grid">
+                                <div class="report-item"><span class="report-label">رتبة الطبيب</span><span class="report-val" id="c-rank"></span></div>
+                                <div class="report-item"><span class="report-label">التشخيص</span><span class="report-val" style="color:var(--danger-red);" id="c-disease"></span></div>
+                                <div class="report-item"><span class="report-label">دقة العمل</span><span class="report-val"><span id="c-acc"></span>%</span></div>
+                                <div class="report-item"><span class="report-label">صحة المريض</span><span class="report-val" id="c-health"></span></div>
+                                <div class="report-item"><span class="report-label">نقاط XP</span><span class="report-val" id="c-xp"></span></div>
+                                <div class="report-item"><span class="report-label">وقت الإنقاذ</span><span class="report-val" id="c-time"></span></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="cert-footer">
-                        <div class="stamp-wrapper">
-                            <svg class="stamp-svg" viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="45" stroke="#ef4444" stroke-width="3" fill="none" stroke-dasharray="10 4"/>
-                                <circle cx="50" cy="50" r="38" stroke="#ef4444" stroke-width="2" fill="none"/>
-                                <circle cx="50" cy="50" r="35" stroke="#ef4444" stroke-width="1" fill="none"/>
-                                <text x="50" y="55" font-size="18" fill="#ef4444" text-anchor="middle" font-weight="900" font-family="var(--font-title)">مُعتمَد</text>
-                            </svg>
-                        </div>
-                        <div class="signature-box">
-                            <div class="signature-line">
-                                <svg class="signature-svg" viewBox="0 0 100 50" preserveAspectRatio="xMidYMid meet">
-                                    <path d="M10,40 Q25,10 35,30 T55,20 T75,40 T95,15" stroke="#1e3a8a" stroke-width="3" fill="none" stroke-linecap="round"/>
-                                    <path d="M45,25 Q55,45 65,25" stroke="#1e3a8a" stroke-width="2" fill="none"/>
+                        <div class="cert-footer">
+                            <div class="stamp-wrapper">
+                                <svg class="stamp-svg" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" stroke="#ef4444" stroke-width="3" fill="none" stroke-dasharray="10 4"/>
+                                    <circle cx="50" cy="50" r="38" stroke="#ef4444" stroke-width="2" fill="none"/>
+                                    <circle cx="50" cy="50" r="35" stroke="#ef4444" stroke-width="1" fill="none"/>
+                                    <text x="50" y="55" font-size="18" fill="#ef4444" text-anchor="middle" font-weight="900" font-family="var(--font-title)">مُعتمَد</text>
                                 </svg>
                             </div>
-                            <div class="signature-title">المشرف العام<br>محمد هاشم القثامى</div>
+                            <div class="signature-box">
+                                <div class="signature-line">
+                                    <svg class="signature-svg" viewBox="0 0 100 50" preserveAspectRatio="xMidYMid meet">
+                                        <path d="M10,40 Q25,10 35,30 T55,20 T75,40 T95,15" stroke="#1e3a8a" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                        <path d="M45,25 Q55,45 65,25" stroke="#1e3a8a" stroke-width="2" fill="none"/>
+                                    </svg>
+                                </div>
+                                <div class="signature-title">المشرف العام<br>محمد هاشم القثامى</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
+                <div id="end-copyright" class="footer-credits">
+                    إعداد وتصميم محمد هاشم القثامى &copy; جميع الحقوق محفوظة
+                </div>
+                <button class="btn btn-outline" onclick="location.reload()">استلام حالة جديدة</button>
             </div>
-            <div id="end-copyright" style="text-align: center; font-size: 1.1rem; color: var(--medical-blue); font-weight: 900; margin-top: 30px; margin-bottom: 20px;">
-                إعداد وتصميم محمد هاشم القثامى &copy; جميع الحقوق محفوظة
-            </div>
-            <button class="btn btn-outline" style="margin-top:2vh;" onclick="location.reload()">استلام حالة جديدة</button>
         </section>
 
         <div class="modal-overlay" id="feedback-modal">
@@ -995,7 +937,9 @@
         const Game = {
             init() {
                 State.scenario = Scenarios[Math.floor(Math.random() * Scenarios.length)];
-                const zones = ['TL','TR','BL','BR'].sort(() => Math.random() - 0.5);
+                
+                // تم إصلاح مشكلة الترتيب العشوائي للمناطق التي كانت تسبب تعارضاً مع CSS Grid وتؤدي لاحتساب الإجابة الصحيحة كخاطئة.
+                const zones = ['TL','TR','BL','BR']; 
                 const grid = document.querySelector('.xray-grid');
                 if(grid) {
                     grid.innerHTML = '';
