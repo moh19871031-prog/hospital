@@ -12,7 +12,7 @@
     
     <style>
         :root {
-            /* الألوان الأساسية */
+            /* الألوان الأساسية - لم يتم تغييرها بناءً على طلبك */
             --medical-blue: #1e3a8a;
             --medical-light: #eff6ff;
             --medical-cyan: #0891b2;
@@ -29,7 +29,7 @@
             --glass-border: rgba(255, 255, 255, 0.5);
             --glass-shadow: rgba(30, 58, 138, 0.08);
             
-            /* خطوط مرنة ومعتدلة (بدون مبالغة في الحجم) */
+            /* خطوط مرنة ومعتدلة (لواجهة اللعبة) */
             --font-title: 'Cairo', sans-serif;
             --font-body: 'Tajawal', sans-serif;
             --text-sm: clamp(0.75rem, 1vw + 0.1rem, 0.875rem);
@@ -41,7 +41,7 @@
             --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* الإعدادات العامة */
+        /* الإعدادات العامة - إصلاح مشاكل الـ Viewport */
         * {
             box-sizing: border-box; 
             margin: 0; 
@@ -54,7 +54,7 @@
         html, body {
             width: 100%; 
             height: 100dvh;
-            overflow: hidden;
+            overflow: hidden; /* إخفاء التمرير الخارجي لضمان تحكم الشاشات الداخلية */
             font-family: var(--font-body);
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
             color: var(--text-dark); 
@@ -86,8 +86,8 @@
             background: linear-gradient(135deg, var(--medical-blue), #2563eb);
             color: var(--white); 
             border: none; 
-            padding: 0.75rem 1.5rem;
-            font-size: var(--text-base); 
+            padding: 0.85rem 1.75rem;
+            font-size: var(--text-lg); 
             font-weight: 700; 
             border-radius: 50px;
             cursor: pointer; 
@@ -101,7 +101,7 @@
             text-decoration: none; 
             width: fit-content; 
             max-width: 100%;
-            min-height: 44px;
+            min-height: 48px;
         }
 
         .btn:hover, .btn:focus-visible { 
@@ -141,7 +141,7 @@
             border-color: var(--medical-cyan); 
         }
 
-        /* هيكل اللعبة الأساسي */
+        /* هيكل اللعبة الأساسي والتمرير (تم إصلاح المشكلة هنا) */
         #game-container { 
             width: 100%; 
             height: 100dvh; 
@@ -160,8 +160,9 @@
             z-index: 10; 
             overflow-y: auto; 
             overflow-x: hidden;
-            /* توفير مساحة للهيدر والمساعد بدون تكبير مفرط */
-            padding: 70px 1rem 80px 1rem;
+            -webkit-overflow-scrolling: touch; /* تمرير ناعم للآيفون */
+            /* إصلاح الجذر لمشكلة التمرير: إضافة مساحة سفلية كبيرة جداً تتجاوز حجم المساعد الآلي */
+            padding: max(75px, 10vh) 1rem max(150px, 20vh) 1rem;
         }
         .scene.active { opacity: 1; pointer-events: all; }
         
@@ -263,21 +264,21 @@
             pointer-events: none; opacity: 0; transition: opacity 0.2s ease-out; 
         }
 
-        /* المساعد الآلي */
+        /* المساعد الآلي - إصلاح مشكلة التغطية وحجب النقر */
         #assistant-container {
             position: fixed; 
             bottom: 20px; 
             right: 20px; 
-            z-index: 100;
+            z-index: 90; /* أقل من الـ modal وأعلى من المحتوى */
             display: flex; 
             align-items: flex-end; 
             gap: 12px;
             transform: translateY(150%); 
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            pointer-events: none; 
+            pointer-events: none; /* يمنع المساعد من التقاط نقرات المستخدم بالخطأ */
             max-width: calc(100vw - 40px);
         }
-        #assistant-container.active { transform: translateY(0); pointer-events: all; }
+        #assistant-container.active { transform: translateY(0); }
         
         .assistant-avatar { 
             width: 55px; height: 55px; 
@@ -297,8 +298,8 @@
             padding: 12px 18px; 
             border-radius: 16px 16px 0 16px;
             border: 2px solid var(--medical-cyan); 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            font-size: var(--text-sm); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            font-size: var(--text-base); 
             font-weight: 700; 
             color: var(--medical-blue);
             position: relative; 
@@ -399,12 +400,12 @@
         .liquid { position: absolute; bottom: 0; left: 0; width: 100%; border-radius: 0 0 16px 16px; transition: height 1s ease-in-out, background 1s; }
         .tube-label { font-weight: 900; font-size: var(--text-sm); font-family: var(--font-title); color: var(--text-dark); }
 
-        .evidence-board { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; width: 100%; }
-        .evidence-card { background: white; padding: 15px; border-radius: 10px; border-right: 4px solid var(--medical-cyan); flex: 1 1 200px; box-shadow: 0 3px 8px rgba(0,0,0,0.05); }
+        .evidence-board { display: flex; flex-direction: column; gap: 15px; width: 100%; }
+        .evidence-card { background: white; padding: 15px; border-radius: 10px; border-right: 4px solid var(--medical-cyan); width: 100%; box-shadow: 0 3px 8px rgba(0,0,0,0.05); }
         .evidence-card h4 { color: var(--medical-blue); font-size: var(--text-base); margin-bottom: 5px; }
         .evidence-card p { font-size: var(--text-sm); font-weight: 700; color: var(--text-muted); }
         
-        .diag-select { width: 100%; padding: 10px; font-size: var(--text-sm); border: 2px solid var(--medical-blue); border-radius: 10px; font-family: var(--font-body); font-weight: 700; color: var(--text-dark); background: white; cursor: pointer; transition: var(--transition-smooth); }
+        .diag-select { width: 100%; padding: 12px; font-size: var(--text-base); border: 2px solid var(--medical-blue); border-radius: 10px; font-family: var(--font-body); font-weight: 700; color: var(--text-dark); background: white; cursor: pointer; transition: var(--transition-smooth); appearance: auto;}
         .diag-select:focus { border-color: var(--warning-orange); outline: none; box-shadow: 0 0 0 3px rgba(217,119,6,0.15); }
 
         /* النوافذ المنبثقة */
@@ -415,11 +416,10 @@
         .modal-box.error { border-top-color: var(--danger-red); }
         .modal-icon { width: 50px; height: 50px; margin: 0 auto 15px; }
         .modal-title { font-size: var(--text-lg); margin-bottom: 10px; font-weight: 900; }
-        .modal-desc { font-size: var(--text-sm); color: var(--text-muted); margin-bottom: 20px; font-weight: 700; line-height: 1.5; }
+        .modal-desc { font-size: var(--text-base); color: var(--text-muted); margin-bottom: 20px; font-weight: 700; line-height: 1.5; }
 
         /* =========================================
-           الشهادة الرسمية (حل جذري متجاوب 100% باستخدام CQI)
-           يمنع القص أو ظهور Scroll تماماً ويحافظ على التخطيط
+           الشهادة الرسمية (تكبير الخطوط وضبط التناسق)
            ========================================= */
         #scene-end {
             background: var(--medical-light);
@@ -443,8 +443,8 @@
 
         .cert-outer-wrapper {
             width: 100%;
-            max-width: calc(70vh * 1.414); /* لضمان عدم تجاوز الارتفاع للشاشة */
-            aspect-ratio: 1.414; /* أبعاد A4 Landscape */
+            max-width: calc(70vh * 1.414); /* نسبة A4 Landscape */
+            aspect-ratio: 1.414; 
             margin: 0 auto;
             display: flex;
         }
@@ -455,13 +455,13 @@
             background: #fff;
             border: 0.4cqi solid var(--medical-blue);
             border-radius: 2cqi;
-            padding: 3cqi 4cqi;
+            padding: 3.5cqi 4.5cqi; /* مساحة داخلية متناسقة */
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            container-type: inline-size; /* تعريف الحاوية للوحدات cqi */
+            container-type: inline-size; 
             position: relative;
             overflow: hidden;
         }
@@ -469,41 +469,45 @@
         .cert-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.03; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>') repeat; background-size: 6cqi; pointer-events: none; z-index: 1; }
         
         .cert-header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; z-index: 2; }
-        .cert-logo svg { width: 7cqi; height: 7cqi; fill: var(--medical-blue); }
+        .cert-logo svg { width: 7.5cqi; height: 7.5cqi; fill: var(--medical-blue); }
         
         .cert-title-area { flex: 1; text-align: center; }
-        .cert-main-title { font-size: 3.5cqi; color: var(--medical-blue); font-weight: 900; margin-bottom: 0.2cqi; font-family: var(--font-title); }
-        .cert-sub { font-size: 1.8cqi; color: var(--mawhiba-purple); font-weight: 900; }
+        /* تكبير خطوط العناوين */
+        .cert-main-title { font-size: 4cqi; color: var(--medical-blue); font-weight: 900; margin-bottom: 0.3cqi; font-family: var(--font-title); }
+        .cert-sub { font-size: 2.1cqi; color: var(--mawhiba-purple); font-weight: 900; }
         
-        .cert-body { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 2; gap: 0.8cqi;}
+        .cert-body { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 2; gap: 1cqi;}
         
-        .stars-container { display: flex; justify-content: center; gap: 0.6cqi; }
-        .stars-container svg { width: 3.5cqi; height: 3.5cqi; fill: #facc15; filter: drop-shadow(0 0.2cqi 0.4cqi rgba(250, 204, 21, 0.4)); }
+        .stars-container { display: flex; justify-content: center; gap: 0.8cqi; }
+        .stars-container svg { width: 4cqi; height: 4cqi; fill: #facc15; filter: drop-shadow(0 0.2cqi 0.4cqi rgba(250, 204, 21, 0.4)); }
         
-        .cert-text { font-size: 1.6cqi; color: var(--text-dark); font-weight: 700; line-height: 1.4; }
-        .cert-name { font-size: 3.8cqi; color: var(--medical-blue); font-weight: 900; max-width: 90cqi; text-align: center; line-height: 1.2; word-wrap: break-word; }
+        /* تكبير الخطوط الوصفية واسم الطبيب */
+        .cert-text { font-size: 1.9cqi; color: var(--text-dark); font-weight: 700; line-height: 1.4; text-align: center;}
+        .cert-name { font-size: 4.5cqi; color: var(--medical-blue); font-weight: 900; max-width: 90cqi; text-align: center; line-height: 1.2; word-wrap: break-word; font-family: var(--font-title);}
         
         .report-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1cqi;
-            width: 85cqi;
-            margin-top: 1cqi;
+            gap: 1.2cqi;
+            width: 88cqi;
+            margin-top: 1.5cqi;
         }
-        .report-item { background: rgba(239, 246, 255, 0.8); padding: 0.8cqi; border-radius: 1cqi; border: 0.15cqi solid #bfdbfe; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .report-label { font-size: 1.1cqi; color: var(--text-muted); font-weight: 900; margin-bottom: 0.2cqi; }
-        .report-val { font-size: 1.4cqi; color: var(--medical-blue); font-weight: 900; font-family: var(--font-title); line-height: 1.2; }
+        .report-item { background: rgba(239, 246, 255, 0.8); padding: 1cqi; border-radius: 1cqi; border: 0.15cqi solid #bfdbfe; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        /* تكبير خطوط المربعات بالأسفل */
+        .report-label { font-size: 1.3cqi; color: var(--text-muted); font-weight: 900; margin-bottom: 0.3cqi; }
+        .report-val { font-size: 1.6cqi; color: var(--medical-blue); font-weight: 900; font-family: var(--font-title); line-height: 1.2; }
         
-        .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; flex-shrink: 0; z-index: 2; }
+        .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; flex-shrink: 0; z-index: 2; margin-top: 1cqi;}
         
-        .stamp-wrapper { position: relative; width: 12cqi; height: 12cqi; display: flex; justify-content: center; align-items: center; }
+        .stamp-wrapper { position: relative; width: 13cqi; height: 13cqi; display: flex; justify-content: center; align-items: center; }
         .stamp-svg { width: 100%; height: 100%; animation: stampRotate 15s linear infinite; opacity: 0.9; }
         @keyframes stampRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
         .signature-box { text-align: center; }
         .signature-line { width: 16cqi; border-bottom: 0.2cqi solid var(--text-dark); margin-bottom: 0.4cqi; display: flex; justify-content: center; padding-bottom: 0.2cqi; }
-        .signature-svg { width: 9cqi; height: 3cqi; }
-        .signature-title { font-size: 1.3cqi; font-weight: 900; color: var(--medical-blue); text-align: center; line-height: 1.4; }
+        .signature-svg { width: 9cqi; height: 3.5cqi; }
+        /* تكبير خط التوقيع */
+        .signature-title { font-size: 1.5cqi; font-weight: 900; color: var(--medical-blue); text-align: center; line-height: 1.4; }
 
         #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 900; }
 
@@ -677,13 +681,14 @@
             </div>
         </section>
 
+        <!-- تم تصحيح تخطيط وحل مشكلة عدم القدرة على الوصول لأسفل هذه الشاشة -->
         <section id="scene-diagnosis" class="scene" aria-label="التشخيص النهائي">
             <div class="scene-content">
                 <h2 class="section-title">التشخيص وإصدار خطة العلاج</h2>
-                <div class="glass-panel" style="width:100%; padding:20px; display:flex; flex-direction:column; align-items:center;">
+                <div class="glass-panel" style="width:100%; padding:25px; display:flex; flex-direction:column; align-items:center;">
                     <h3 style="font-size:var(--text-lg); color:var(--medical-blue); margin-bottom:15px; font-weight: 900;">الأدلة المجمعة في ملف المريض:</h3>
                     <div class="evidence-board" id="evidence-board"></div>
-                    <div style="width:100%; text-align:right; margin-top: 20px;">
+                    <div style="width:100%; text-align:right; margin-top: 25px;">
                         <label for="select-disease" style="font-size:var(--text-base); font-weight:900; color:var(--medical-blue); display:block; margin-bottom:8px;">أولاً: ما هو المرض الرئيسي؟</label>
                         <select id="select-disease" class="diag-select">
                             <option value="">-- اختر بناءً على الأدلة أعلاه --</option>
@@ -699,12 +704,12 @@
                             <option value="fluids">إرواء وريدي مكثف بالسوائل (مغذي)</option>
                         </select>
                     </div>
-                    <button class="btn btn-green" style="margin-top:25px; width:100%;" onclick="Game.submitDiagnosis()">تأكيد الخطة وإعطاء العلاج فوراً</button>
+                    <button class="btn btn-green" style="margin-top:30px; width:100%;" onclick="Game.submitDiagnosis()">تأكيد الخطة وإعطاء العلاج فوراً</button>
                 </div>
             </div>
         </section>
 
-        <!-- بناء جذري للشهادة يعتمد على CQI لضمان عدم حدوث Scroll واستقرار الأحجام بنسبة 100% -->
+        <!-- الشهادة: تم تكبير الخطوط بشكل متدرج بناءً على طلبك -->
         <section id="scene-end" class="scene" aria-label="الشهادة النهائية">
             <div class="scene-end-content">
                 <div class="cert-outer-wrapper">
@@ -754,7 +759,7 @@
                     </div>
                 </div>
                 
-                <div id="end-copyright" class="footer-credits">
+                <div id="end-copyright" class="footer-credits" style="margin-top: 10px;">
                     إعداد وتصميم محمد هاشم القثامى &copy; جميع الحقوق محفوظة
                 </div>
                 <button class="btn btn-outline" onclick="location.reload()">استلام حالة جديدة</button>
@@ -938,7 +943,7 @@
             init() {
                 State.scenario = Scenarios[Math.floor(Math.random() * Scenarios.length)];
                 
-                // تم إصلاح مشكلة الترتيب العشوائي للمناطق التي كانت تسبب تعارضاً مع CSS Grid وتؤدي لاحتساب الإجابة الصحيحة كخاطئة.
+                // تم التأكد من بقاء المصفوفة مرتبة بشكل صحيح برمجياً
                 const zones = ['TL','TR','BL','BR']; 
                 const grid = document.querySelector('.xray-grid');
                 if(grid) {
